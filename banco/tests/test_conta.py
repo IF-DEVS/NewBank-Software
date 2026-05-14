@@ -53,3 +53,8 @@ def test_get_saldo_deve_retornar_saldo_atual():
     conta.depositar(50)
     conta.sacar(30)
     assert conta.getSaldo() == 120
+
+def test_get_numero_conta_deve_retornar_numero_da_conta():
+    """Deve retornar o número da conta"""
+    conta = ContaBancaria(saldo_inicial=100, numero_conta="12345")
+    assert conta.getNumeroConta() == "12345"

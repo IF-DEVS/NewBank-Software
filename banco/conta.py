@@ -4,8 +4,9 @@ class SaldoInsuficienteException(Exception):
 
 
 class ContaBancaria:
-    def __init__(self, saldo_inicial=0):
+    def __init__(self, saldo_inicial=0, numero_conta=None):
         self.saldo = saldo_inicial
+        self.numero_conta = numero_conta
 
     def depositar(self, valor):
         """Adiciona valor ao saldo da conta
@@ -39,3 +40,7 @@ class ContaBancaria:
     def getSaldo(self):
         """Retorna o saldo atual da conta"""
         return self.saldo
+
+    def getNumeroConta(self):
+        """Retorna o número da conta"""
+        return self.numero_conta

@@ -77,11 +77,11 @@ pytest banco/tests/ -v
 
 ### Classe ContaBancaria (5 métodos)
 
-- [x] **init**(saldo_inicial=0) — Criar conta com saldo inicial
+- [x] **init**(saldo_inicial=0, numero_conta=None) — Criar conta com saldo inicial e número da conta
 - [x] depositar(valor) — Adicionar dinheiro à conta
 - [x] sacar(valor) — Remover dinheiro da conta
 - [x] getSaldo() — Retornar saldo atual
-- [ ] getNumeroConta() — Retornar número da conta
+- [x] getNumeroConta() — Retornar número da conta
 
 ### Classe Transferencia (4 métodos)
 
