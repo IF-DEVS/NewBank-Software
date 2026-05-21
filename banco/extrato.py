@@ -7,15 +7,37 @@ class Extrato:
         self.transacoes = []
 
     def adicionar_transacao(self, transacao: Transacao):
+
+        if not isinstance(transacao.valor, (int, float)):
+            raise ValueError("O valor da transação deve ser numérico")
+        
+        if transacao.valor <= 0:
+            raise ValueError("O valor da transação deve ser positivo")
+
         self.transacoes.append(transacao)
 
     def getTransacoes(self):
         return self.transacoes
+    
+    def calcularTotalEntradas(self):
+        return sum(
+            transacao.valor 
+            for transacao in self.transacoes
+            if transacao.categoria == CategoriaTransacao.DEPOSITO
+        )
+
+    def calcularTotalSaidas(self):
+        return sum(
+            transacao.valor 
+            for transacao in self.transacoes
+            if transacao.categoria == CategoriaTransacao.SAQUE
+        )
+
 
 
 class CategoriaTransacao(Enum):
     DEPOSITO = "deposito"
-    ENVIO = "envio"
+    SAQUE = "saque"
 
 class Transacao:
 
@@ -30,11 +52,3 @@ class Transacao:
         self.categoria = categoria
         self.data_operacao = data_operacao
         self.responsavel = responsavel
-
-    def exibir_resumo(self):
-        print(f"Valor: R$ {self.valor}")
-        print(f"Categoria: {self.categoria.value}")
-        print(f"Data: {self.data_operacao}")
-
-        if self.categoria == CategoriaTransacao.DEPOSITO:
-            print(f"Responsável: {self.responsavel}")
